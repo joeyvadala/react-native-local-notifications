@@ -42,6 +42,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                                 .setStyle(new NotificationCompat.BigTextStyle().bigText(text))
                                 .setAutoCancel(true);
 
+
                 // Set alarm sound
                 if (!sound.equals("") && !sound.equals("silence")) {
                     Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION); //use default sound TODO: use custom sound by name!

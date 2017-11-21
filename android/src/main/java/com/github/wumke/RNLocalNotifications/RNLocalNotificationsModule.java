@@ -31,8 +31,8 @@ public class RNLocalNotificationsModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void createNotification(Integer id, String text, String datetime, String sound) {
-        this.createAlarm(id, text, datetime, sound, false);
+    public void createNotification(Integer id, String text, String datetime, String sound, String repeatType) {
+        this.createAlarm(id, text, datetime, sound, false, repeatType);
     }
 
     @ReactMethod
@@ -41,11 +41,11 @@ public class RNLocalNotificationsModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void updateNotification(Integer id, String text, String datetime, String sound) {
-        this.createAlarm(id, text, datetime, sound, true);
+    public void updateNotification(Integer id, String text, String datetime, String sound, String repeatType) {
+        this.createAlarm(id, text, datetime, sound, true, repeatType);
     }
 
-    public void createAlarm(Integer id, String text, String datetime, String sound, boolean update) {
+    public void createAlarm(Integer id, String text, String datetime, String sound, boolean update, String repeatType) {
         if(update){
             this.deleteAlarm(id);
         }
@@ -69,9 +69,17 @@ public class RNLocalNotificationsModule extends ReactContextBaseJavaModule {
 
         PendingIntent mAlarmSender = PendingIntent.getBroadcast(reactContext, id, intent, 0);
 
+
         Calendar date = Calendar.getInstance();
         if(timeInMillis > date.getTimeInMillis()) {
-            alarmManager.set(AlarmManager.RTC_WAKEUP, timeInMillis, mAlarmSender);
+            if (repeatType == "day") {
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, timeInMillis, AlarmManager.INTERVAL_DAY, mAlarmSender);
+            } else {
+                alarmManager.set(AlarmManager.RTC_WAKEUP, timeInMillis, mAlarmSender);
+            }
+
+
+
         }
     }
 
