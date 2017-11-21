@@ -24,7 +24,7 @@ RCT_EXPORT_METHOD(updateNotification:(NSInteger *)id text:(NSString *)text datet
     [self createAlarm:id text:text datetime:datetime sound:sound update:TRUE repeatType:repeatType];
 };
 
-- (void)createAlarm:(NSInteger *)id text:(NSString *)text datetime:(NSString *)datetime sound:(NSString *)sound update:(Boolean *)update repeatInterval:(NSString *)repeatType {
+- (void)createAlarm:(NSInteger *)id text:(NSString *)text datetime:(NSString *)datetime sound:(NSString *)sound update:(Boolean *)update repeatType:(NSString *)repeatType {
     if(update){
         [self deleteAlarm:id];
     }
