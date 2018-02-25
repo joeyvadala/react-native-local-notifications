@@ -46,7 +46,8 @@ RCT_EXPORT_METHOD(updateNotification:(NSInteger *)id text:(NSString *)text datet
         
         // Added by Joseph W Vadala on 11/20/2017
         // Made this the default because we need to make this work
-        notification.repeatInterval = NSCalendarUnitDay;
+        // Temp change to Minute to test
+        notification.repeatInterval = NSCalendarUnitMinute;
         
         int a = ((int)[[UIApplication sharedApplication] applicationIconBadgeNumber] + 1);
         notification.applicationIconBadgeNumber = a;
