@@ -45,9 +45,8 @@ RCT_EXPORT_METHOD(updateNotification:(NSInteger *)id text:(NSString *)text datet
         notification.alertAction = @"Open";
         
         // Added by Joseph W Vadala on 11/20/2017
-        if ([repeatType isEqualToString:@"day"]) {
-            notification.repeatInterval = NSCalendarUnitDay;
-        }
+        // Made this the default because we need to make this work
+        notification.repeatInterval = NSCalendarUnitDay;
         
         int a = ((int)[[UIApplication sharedApplication] applicationIconBadgeNumber] + 1);
         notification.applicationIconBadgeNumber = a;
